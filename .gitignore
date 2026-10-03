@@ -1,0 +1,40 @@
+# Dependencies and generated output
+node_modules/
+dist/
+build/
+coverage/
+.vite/
+.cache/
+*.tsbuildinfo
+vite.config.*.timestamp-*
+
+# Local environment and hosting state
+.env
+.env.*
+!.env.example
+.vercel/
+*.local
+
+# Logs and temporary artifacts
+logs/
+*.log
+*-debug.log*
+.tmp-*
+.claude-replay.*
+
+# Local design references and agent state
+.figma/
+.codex/
+.agents/
+.plugins/
+.opencode-skills/
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+

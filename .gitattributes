@@ -1,0 +1,10 @@
+# Normalize source files across Windows and Linux.
+* text=auto eol=lf
+
+# Commit artwork directly; these small assets do not require Git LFS.
+*.webp binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ico binary
+
