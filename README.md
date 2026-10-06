@@ -2,7 +2,7 @@
 
 A React + TypeScript portfolio with curved paper transitions, scroll/swipe navigation, keyboard controls and an accessible page selector.
 
-Production address: https://minoliimalka.vercel.app/
+Production address: https://minoliimalka.studio/
 
 ## Develop locally
 
@@ -25,7 +25,7 @@ Open http://localhost:8443/. The PORT environment variable can override the deve
    - Build command: **npm run build**
    - Output directory: **dist**
 4. Use **Node.js 24.x**. No environment variables, database or server functions are required.
-5. Deploy. Assign minoliimalka.vercel.app to the project if available, then verify the portfolio and contact links at that address.
+5. Deploy. Assign minoliimalka.studio to the project if available, then verify the portfolio and contact links at that address.
 
 Commit **source files and public artwork**, not dist/ or node_modules/. Vercel builds the site from GitHub. GitHub Actions also runs formatting and production-build checks on pushes and pull requests.
 

@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react"
+import CvModal from "./CvModal"
 import PageTurn, { type Turn } from "./PageTurn"
 import { loadPage, pages, pageSource, projects } from "./portfolio"
 
@@ -7,6 +8,7 @@ export default function App() {
   const [turn, setTurn] = useState<Turn | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
+  const [showCv, setShowCv] = useState(false)
   const busy = useRef(false)
   const mounted = useRef(true)
   const pointer = useRef<{
@@ -71,6 +73,7 @@ export default function App() {
 
   useEffect(() => {
     const handleKey = (event: KeyboardEvent) => {
+      if (showCv) return
       if (
         event.ctrlKey ||
         event.metaKey ||
@@ -100,7 +103,7 @@ export default function App() {
     }
     window.addEventListener("keydown", handleKey)
     return () => window.removeEventListener("keydown", handleKey)
-  }, [goToPage, page])
+  }, [goToPage, page, showCv])
 
   useEffect(() => {
     const element = book.current
@@ -149,7 +152,7 @@ export default function App() {
           aria-label="Go to portfolio cover"
         >
           <span>MINOLI IMALKA</span>
-          <span className="brand-subtitle">Architecture & spatial design</span>
+          <span className="brand-subtitle">Architectural Design</span>
         </button>
         <nav className="header-nav" aria-label="Portfolio sections">
           <button
@@ -163,6 +166,13 @@ export default function App() {
             aria-current={page >= 4 && page < 15 ? "page" : undefined}
           >
             Projects
+          </button>
+          <button
+            onClick={() => setShowCv(true)}
+            aria-haspopup="dialog"
+            aria-expanded={showCv}
+          >
+            CV
           </button>
           <button
             onClick={() => void goToPage(15)}
@@ -220,11 +230,14 @@ export default function App() {
           {turn && <PageTurn turn={turn} onComplete={completeTurn} />}
           {!isBusy &&
             page === 4 &&
-            projects.map((project, index) => (
+            projects.map((project) => (
               <button
                 key={project.name}
                 className="project-hotspot"
-                style={{ left: `${11.2 + index * 17.65}%` }}
+                style={{
+                  left: `${project.left}%`,
+                  width: `${project.width}%`,
+                }}
                 onClick={() => void goToPage(project.page)}
                 aria-label={`Open ${project.name}`}
               />
@@ -243,7 +256,7 @@ export default function App() {
               />
               <a
                 className="contact-hotspot website"
-                href="https://minoliimalka.vercel.app/"
+                href="https://minoliimalka.studio/"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Visit Minoli Imalka's portfolio website"
@@ -318,6 +331,7 @@ export default function App() {
           </button>
         </div>
       )}
+      <CvModal isOpen={showCv} onClose={() => setShowCv(false)} />
     </main>
   )
 }

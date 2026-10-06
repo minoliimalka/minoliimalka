@@ -16,17 +16,26 @@ export const pages = [
   "Get in touch",
 ]
 
-export const projects = [
-  { name: "Museum of Pure Air", page: 5 },
-  { name: "Fabric Printing Factory", page: 8 },
-  { name: "Siriwardena House", page: 10 },
-  { name: "The Flowspace", page: 12 },
-  { name: "Arena for Drama Therapy", page: 13 },
+export interface ProjectItem {
+  name: string
+  page: number
+  left: number
+  width: number
+}
+
+export const projects: ProjectItem[] = [
+  { name: "Museum of Pure Air", page: 5, left: 11.75, width: 15.29 },
+  { name: "Fabric Printing Factory", page: 8, left: 28.54, width: 17.12 },
+  { name: "Siriwardena House", page: 10, left: 46.58, width: 17.08 },
+  { name: "The Flowspace", page: 12, left: 64.83, width: 15.29 },
+  { name: "Arena for Drama Therapy", page: 13, left: 81.12, width: 15.29 },
 ]
 
 export function pageSource(page: number) {
   return `${import.meta.env.BASE_URL}portfolio/page-${String(page).padStart(2, "0")}.webp`
 }
+
+export const cvUrl = `${import.meta.env.BASE_URL}CV/Minoli%20Imalka%20CV.pdf`
 
 const images = new Map<number, Promise<HTMLImageElement>>()
 
